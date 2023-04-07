@@ -7,7 +7,12 @@ import numpy as np
 import pandas as pd
 
 
-DIR = './'
+#code samples at bottom of readme:
+# https://github.com/MengtingWan/goodreads
+# check this file out:
+# https://github.com/MengtingWan/goodreads/blob/master/reviews.ipynb
+
+DIR = 'data/'
 
 
 
@@ -26,6 +31,6 @@ def load_data(file_name, head = 500):
     return data
 
 
-reviews = load_data(os.path.join(DIR, 'goodreads_reviews_dedup.json.gz'))
-np.random.choice(reviews)
+reviews = load_data(os.path.join(DIR, 'goodreads_reviews_fantasy_paranormal.json.gz'))
+print(np.random.choice(reviews))
 
