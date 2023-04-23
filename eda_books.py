@@ -5,7 +5,10 @@ import os
 import sys
 import numpy as np
 import pandas as pd
-
+import matplotlib.pyplot as plt
+import seaborn as sns
+from datetime import datetime
+pd.options.display.float_format = '{:,}'.format
 
 #code samples at bottom of readme:
 # https://github.com/MengtingWan/goodreads
@@ -13,8 +16,6 @@ import pandas as pd
 # https://github.com/MengtingWan/goodreads/blob/master/reviews.ipynb
 
 DIR = 'data/'
-
-
 
 def load_data(file_name, head = 500):
     count = 0
@@ -29,8 +30,18 @@ def load_data(file_name, head = 500):
             if (head is not None) and (count > head):
                 break
     return data
+def count_lines(file_name):
+    print('counting file:', file_name)
+    count = 0
+    with gzip.open(file_name) as fin:
+        for l in fin:
+            count += 1
+    print('done!')
+    return count
 
+# reviews = load_data(os.path.join(DIR, 'goodreads_reviews_dedup.json.gz'), None)
+books = load_data(os.path.join(DIR, 'goodreads_books.json.gz')) #None) 
 
-reviews = load_data(os.path.join(DIR, 'goodreads_reviews_fantasy_paranormal.json.gz'))
-print(np.random.choice(reviews))
+books_df = pd.DataFrame(books)
 
+print(books_df.columns)
